@@ -16,7 +16,7 @@ namespace RunTime.Data.ValueObject
     [Serializable]
     public struct ColorObject
     {
-        
+        public int Count;
         public TypeOfColorEnum Type;
         public GameObject obj;
     }

@@ -15,61 +15,85 @@ MonoBehaviour:
   data:
   - Color: 0
     ColorObjects:
-    - Type: 0
+    - Count: 50
+      Type: 0
       obj: {fileID: 5307332604388439600, guid: d477868e31816aa45b2e22f90df9fabf, type: 3}
-    - Type: 1
+    - Count: 50
+      Type: 1
       obj: {fileID: 6070694577626891536, guid: b8f0e6acc60dec141b4289d6d5bb5607, type: 3}
-    - Type: 2
+    - Count: 50
+      Type: 2
       obj: {fileID: 294620984129699749, guid: 640814db616bf0047b873599f226e336, type: 3}
-    - Type: 3
+    - Count: 50
+      Type: 3
       obj: {fileID: 2988838857797879631, guid: 3e4195b8678fd874daa442c91d3f59ea, type: 3}
   - Color: 1
     ColorObjects:
-    - Type: 0
+    - Count: 50
+      Type: 0
       obj: {fileID: 1214197070611029590, guid: 4c1f5c45e506dff478823b17b5947a83, type: 3}
-    - Type: 1
+    - Count: 50
+      Type: 1
       obj: {fileID: 3867178086272852974, guid: 1e4cb56b0db94a34ab57960d8b377e70, type: 3}
-    - Type: 2
+    - Count: 50
+      Type: 2
       obj: {fileID: 3703381561281872728, guid: 0b3fac72e5bdce442ad39f05a30d4dce, type: 3}
-    - Type: 3
+    - Count: 50
+      Type: 3
       obj: {fileID: 1727992589049346272, guid: 12e6316e8eea4cf4db6ca3e6be87fe73, type: 3}
   - Color: 2
     ColorObjects:
-    - Type: 0
+    - Count: 50
+      Type: 0
       obj: {fileID: 3865284007605423659, guid: ed86768d01e87d54990cd5eff851f55c, type: 3}
-    - Type: 1
+    - Count: 50
+      Type: 1
       obj: {fileID: 1360311936408705047, guid: 76e7a4446f2247b4c81147deef773bd9, type: 3}
-    - Type: 2
+    - Count: 50
+      Type: 2
       obj: {fileID: 7468189794613476887, guid: d2db71fe1c7d8ce46be76ea552bc611a, type: 3}
-    - Type: 3
+    - Count: 50
+      Type: 3
       obj: {fileID: 241465178758950108, guid: 3b6464ace99314c4ea3f0e0d70d83a8a, type: 3}
   - Color: 3
     ColorObjects:
-    - Type: 0
+    - Count: 50
+      Type: 0
       obj: {fileID: 9000102583997316973, guid: b93800f0f9b665841af6f70ea744eb7b, type: 3}
-    - Type: 1
+    - Count: 50
+      Type: 1
       obj: {fileID: 3138463685122919913, guid: 8ebcdd12077da674db35eb0607939fb1, type: 3}
-    - Type: 2
+    - Count: 50
+      Type: 2
       obj: {fileID: 3061718386703768622, guid: b0406e62b50305343bbcbb18617dcfe1, type: 3}
-    - Type: 3
+    - Count: 50
+      Type: 3
       obj: {fileID: 2078382683280763472, guid: 3c73eacf616ae0742b45a253673ecc7b, type: 3}
   - Color: 4
     ColorObjects:
-    - Type: 0
+    - Count: 50
+      Type: 0
       obj: {fileID: 956260141802105103, guid: 815fe782b5704964d82aa4497c796f1e, type: 3}
-    - Type: 1
+    - Count: 50
+      Type: 1
       obj: {fileID: 8207868313075430720, guid: f045e1971cd345048a67e8c9ee65d8da, type: 3}
-    - Type: 2
+    - Count: 50
+      Type: 2
       obj: {fileID: 3798334691521795572, guid: 6eca23b6a573cfa48bb0b64e01376cc1, type: 3}
-    - Type: 3
+    - Count: 50
+      Type: 3
       obj: {fileID: 8241398349384298722, guid: 50e64ada43050b94db8d836872467ca3, type: 3}
   - Color: 5
     ColorObjects:
-    - Type: 0
+    - Count: 50
+      Type: 0
       obj: {fileID: 4917151847080666459, guid: a3c8683764a84f8438618f8802defda0, type: 3}
-    - Type: 1
+    - Count: 50
+      Type: 1
       obj: {fileID: 8130587720715608236, guid: a917b74d051fe014eb793e4bbc96c450, type: 3}
-    - Type: 2
+    - Count: 50
+      Type: 2
       obj: {fileID: 9035377836996483955, guid: 6783f255e16e5c44385d69c956a37195, type: 3}
-    - Type: 3
+    - Count: 50
+      Type: 3
       obj: {fileID: 5082302030648187783, guid: 1eff52d43ef219141a1fc22663653130, type: 3}
