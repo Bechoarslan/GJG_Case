@@ -1,6 +1,6 @@
 ﻿namespace RunTime.Enums
 {
-    public enum TypeOfColorEnum
+    public enum TypeOfBlastEnum
     {
  
         Default,

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using RunTime.Enums;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RunTime.Data.ValueObject
 {
     [Serializable]
     public struct PoolObject
     {
-        public ColorEnum Color;
+        [FormerlySerializedAs("Color")] public BlastColorEnum blastColor;
         public List<ColorObject> ColorObjects;
     }
     
@@ -17,7 +18,7 @@ namespace RunTime.Data.ValueObject
     public struct ColorObject
     {
         public int Count;
-        public TypeOfColorEnum Type;
+        public TypeOfBlastEnum Type;
         public GameObject obj;
     }
 }

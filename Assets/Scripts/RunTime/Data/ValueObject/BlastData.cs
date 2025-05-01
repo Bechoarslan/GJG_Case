@@ -8,10 +8,9 @@ namespace RunTime.Data.ValueObject
     [Serializable]
     public struct BlastData
     {
-        public int Level;
         public int Rows;
         public int Columns;
-        public List<ColorEnum> Colors;
+        public List<BlastColorEnum> Colors;
     }
 
     

@@ -1,6 +1,6 @@
 ﻿namespace RunTime.Enums
 {
-    public enum ColorEnum
+    public enum BlastColorEnum
     {
         Blue,
         Green,

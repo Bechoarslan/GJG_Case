@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a92cbcc192b4f4080bebd370fc45f38, type: 3}
   m_Name: CD_BlastData
   m_EditorClassIdentifier: 
+  Level: 0
   data:
-  - Level: 0
-    Rows: 0
-    Columns: 0
-    Colors: 02000000
-  - Level: 0
-    Rows: 0
+  - Rows: 8
+    Columns: 4
+    Colors: 02000000010000000300000004000000
+  - Rows: 0
     Columns: 0
     Colors: 

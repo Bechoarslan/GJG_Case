@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CD_PoolObjects
   m_EditorClassIdentifier: 
   data:
-  - Color: 0
+  - blastColor: 0
     ColorObjects:
     - Count: 50
       Type: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
     - Count: 50
       Type: 3
       obj: {fileID: 2988838857797879631, guid: 3e4195b8678fd874daa442c91d3f59ea, type: 3}
-  - Color: 1
+  - blastColor: 1
     ColorObjects:
     - Count: 50
       Type: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
     - Count: 50
       Type: 3
       obj: {fileID: 1727992589049346272, guid: 12e6316e8eea4cf4db6ca3e6be87fe73, type: 3}
-  - Color: 2
+  - blastColor: 2
     ColorObjects:
     - Count: 50
       Type: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
     - Count: 50
       Type: 3
       obj: {fileID: 241465178758950108, guid: 3b6464ace99314c4ea3f0e0d70d83a8a, type: 3}
-  - Color: 3
+  - blastColor: 3
     ColorObjects:
     - Count: 50
       Type: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
     - Count: 50
       Type: 3
       obj: {fileID: 2078382683280763472, guid: 3c73eacf616ae0742b45a253673ecc7b, type: 3}
-  - Color: 4
+  - blastColor: 4
     ColorObjects:
     - Count: 50
       Type: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
     - Count: 50
       Type: 3
       obj: {fileID: 8241398349384298722, guid: 50e64ada43050b94db8d836872467ca3, type: 3}
-  - Color: 5
+  - blastColor: 5
     ColorObjects:
     - Count: 50
       Type: 0

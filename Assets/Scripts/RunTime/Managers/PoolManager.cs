@@ -1,6 +1,9 @@
-﻿using RunTime.Data.UnityObject;
+﻿using System;
+using RunTime.Commands.PoolCommands;
+using RunTime.Data.UnityObject;
 using RunTime.Data.ValueObject;
 using RunTime.Enums;
+using RunTime.Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -11,14 +14,13 @@ namespace RunTime.Managers
         #region Self Variables
 
         #region Serialized Variables
-
-        [SerializeField]
-        private Transform newParentObj;
+        
         #endregion
 
         #region Private Variables
 
         private CD_PoolObjects _data;
+        private SpawnBlastObjectCommand _spawnBlastObjectCommand;
 
         #endregion
 
@@ -26,51 +28,58 @@ namespace RunTime.Managers
         private void Awake()
         {
             _data = GetObjectData();
-            SpawnParentObjects();
-            
+            _spawnBlastObjectCommand = new SpawnBlastObjectCommand(_data,transform);
+            _spawnBlastObjectCommand.Execute();
         }
 
         private CD_PoolObjects GetObjectData() => Resources.Load<CD_PoolObjects>("Data/CD_PoolObjects");
-       
-
-
-        private void SpawnParentObjects()
+        
+        private void OnEnable()
         {
-            for (int i = 0; i < _data.data.Count; i++)
-            {
-                var data = _data.data[i];
-                var newObject = new GameObject();
-                newObject.name = data.Color.ToString();
-                newObject.transform.parent = transform;
-                
-                foreach (var colorObject in data.ColorObjects)
-                {
-                    var newGameObject = new GameObject();
-                    newGameObject.name = colorObject.Type.ToString();
-                    newGameObject.transform.parent = newObject.transform;
-                    for (int k = 0; k < colorObject.Count; k++)
-                    {
-                        var obj = Instantiate(colorObject.obj, newGameObject.transform);
-                        obj.SetActive(false);
-                    }
-                }
-                
-
-            }
+            OnSubscribeEvents();
         }
 
-        [Button("Get Color Object")]
-        private void GetColorObject( TypeOfColorEnum typeOfColor, ColorEnum color,int count)
+        private void OnSubscribeEvents()
         {
-            var colorObj = transform.GetChild((int)color).gameObject;
-            var typeOfObj = colorObj.transform.GetChild((int)typeOfColor).gameObject;
-            for (int i = 0; i < count; i++)
+            PoolSignals.Instance.onGetBlastObject += GetBlastObject;
+        }
+
+        private void OnUnsubscribeEvents()
+        {
+            PoolSignals.Instance.onGetBlastObject -= GetBlastObject;
+        }
+
+        private void OnDisable()
+        {
+            OnUnsubscribeEvents();
+        }
+        
+        private GameObject GetBlastObject(TypeOfBlastEnum typeOfBlast, BlastColorEnum blastColor,int count,Transform newParent)
+        {
+            
+            var colorObj = transform.GetChild((int)blastColor).gameObject;
+            var typeOfObj = colorObj.transform.GetChild((int)typeOfBlast).gameObject;
+            if (typeOfObj.transform.childCount > 0)
             {
-                var newObj = typeOfObj.transform.GetChild(i).gameObject;
-                newObj.transform.parent = newParentObj;
+                var newObj = typeOfObj.transform.GetChild(typeOfObj.transform.childCount - 1).gameObject;
+                Debug.LogWarning(newObj.name);
+                newObj.transform.parent = newParent;
+                return newObj;
+            }
+            else
+            {
+                var newObj = Instantiate(_data.data[(int)blastColor].ColorObjects[(int)typeOfBlast].obj, newParent);
+                newObj.SetActive(false);
+                return newObj;
             }
 
+            
         }
+
+        private void SendBlastObject()
+        {
+            
+        } 
 
        
     }
