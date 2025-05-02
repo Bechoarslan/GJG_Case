@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using DG.Tweening;
+using NUnit.Framework;
 using RunTime.Data.UnityObject;
 using RunTime.Enums;
 using RunTime.Keys;
@@ -11,25 +13,22 @@ namespace RunTime.Commands.BlastGridCommands
     {
         private CD_BlastData _blastData;
         private Dictionary<Vector2, BlastKeys> _blastDictionary;
-        private GameStartCheckAllTheGridCommand _gameStartCheckAllTheGridCommand;
         private Transform _collectedBlats;
 
-        public ChangeBlastTypeCommand(CD_BlastData blastData, Dictionary<Vector2, BlastKeys> blastDictionary,
-            GameStartCheckAllTheGridCommand gameStartCheckAllTheGridCommand, Transform collectedBlats)
+        public ChangeBlastTypeCommand(CD_BlastData blastData, Dictionary<Vector2, BlastKeys> blastDictionary
+             , Transform collectedBlats)
         {
             _blastData = blastData;
             _blastDictionary = blastDictionary;
-            _gameStartCheckAllTheGridCommand = gameStartCheckAllTheGridCommand;
+            
             _collectedBlats = collectedBlats;
         }
 
 
-        public void Execute()
+        public void Execute(List<List<Vector2>> matchedGroups)
         {
             
-            var allMatchedGroups = _gameStartCheckAllTheGridCommand.Execute();
-
-            foreach (var matched in allMatchedGroups)
+            foreach (var matched in matchedGroups)
             {
                 if (matched.Count < 5) continue;
 
@@ -37,6 +36,8 @@ namespace RunTime.Commands.BlastGridCommands
                 TypeOfBlastEnum blastType = GetBlastType(matched.Count);
                 ChangeTheItems(matched, blastType);
             }
+           
+            Debug.LogWarning(matchedGroups.Count);
         }
 
         private TypeOfBlastEnum GetBlastType(int matchedCount)
@@ -51,13 +52,15 @@ namespace RunTime.Commands.BlastGridCommands
 
         public void ChangeTheItems(List<Vector2> matched, TypeOfBlastEnum type)
         {
+            
             foreach (var item in matched)
             {
                 var matchedObj = _blastDictionary[item];
                 var newObj = PoolSignals.Instance.onGetBlastObject?.Invoke(type, matchedObj.color, 1, _collectedBlats);
 
+                Debug.LogWarning("matchedObj: " + matchedObj.obj.GetInstanceID());
                 // Yeni objeyi eski objenin pozisyonuna yerleştir
-                newObj.transform.position = matchedObj.obj.transform.position;
+                newObj.transform.localPosition = matchedObj.obj.transform.localPosition;
                 newObj.transform.localScale = matchedObj.obj.transform.localScale;
                 newObj.GetComponent<SpriteRenderer>().sortingOrder = matchedObj.obj.GetComponent<SpriteRenderer>().sortingOrder;
                 newObj.SetActive(true); // Yeni objeyi aktif yap
@@ -65,6 +68,8 @@ namespace RunTime.Commands.BlastGridCommands
                 // Dictionary'i güncelle
                 _blastDictionary[item] = new BlastKeys(newObj, matchedObj.color);
 
+                Debug.LogWarning(newObj.GetInstanceID());
+                Debug.LogWarning(_blastDictionary[item].obj.GetInstanceID());
                 // Eski objeyi havuza geri gönder
                 PoolSignals.Instance.onSendBlastObjectToPool?.Invoke(TypeOfBlastEnum.Default, matchedObj.color, matchedObj.obj);
             }

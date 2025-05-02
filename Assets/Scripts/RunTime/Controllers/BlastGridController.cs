@@ -45,10 +45,9 @@ namespace RunTime.Controllers
             _findSameColorCommand = new FindSameColorCommand(_blastDictionary);
             _gameStartCheckAllTheGridCommand = new GameStartCheckAllTheGridCommand(_blastDictionary);
             _changeBlastTypeCommand = new ChangeBlastTypeCommand(_blastData, _blastDictionary,
-                _gameStartCheckAllTheGridCommand,
                 collectedBlats);
             _createGridCommand = new CreateGridCommand(_blastData, ref collectedBlats, _blastDictionary,
-                _changeBlastTypeCommand, camera);
+                _changeBlastTypeCommand,_gameStartCheckAllTheGridCommand);
 
 
 
@@ -64,11 +63,11 @@ namespace RunTime.Controllers
 
         public void OnPlayerClickedToBlast(Vector2 pos)
         {
-            /*ar newPos = new Vector2(pos.x / 2.2f, pos.y / 2.2f);
+            var newPos = new Vector2(pos.x / 2.2f, pos.y / 2.2f);
 
             if (_blastDictionary.ContainsKey(newPos))
             {
-                var listOfBlats = _findSameColorCommand.Execute();
+                var listOfBlats = _findSameColorCommand.Execute(newPos);
                 foreach (var item in listOfBlats)
                 {
                     Debug.LogWarning("Blasting");
@@ -86,8 +85,7 @@ namespace RunTime.Controllers
             }
 
 
-        }*/
+        }
         }
     }
 
-}

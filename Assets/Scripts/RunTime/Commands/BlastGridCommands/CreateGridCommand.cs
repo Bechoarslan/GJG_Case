@@ -15,16 +15,16 @@ namespace RunTime.Commands.BlastGridCommands
         private Transform _collectedBlats;
         private Dictionary<Vector2, BlastKeys> _blastDictionary;
         private ChangeBlastTypeCommand _changeBlastTypeCommand;
-        private Camera _camera;
+        private GameStartCheckAllTheGridCommand _gameStartCheckAllTheGridCommand;
         public CreateGridCommand(CD_BlastData blastData, ref Transform collectedBlats,
             Dictionary<Vector2, BlastKeys> blastDictionary, ChangeBlastTypeCommand changeBlastTypeCommand,
-            Camera camera)
+            GameStartCheckAllTheGridCommand gameStartCheckAllTheGridCommand)
         {
             _blastData  = blastData;
             _collectedBlats = collectedBlats;
             _blastDictionary = blastDictionary;
             _changeBlastTypeCommand = changeBlastTypeCommand;
-            _camera = camera;
+            _gameStartCheckAllTheGridCommand = gameStartCheckAllTheGridCommand;
         }
 
         public void Execute()
@@ -65,7 +65,7 @@ namespace RunTime.Commands.BlastGridCommands
        
            
             
-            _changeBlastTypeCommand.Execute();
+            _changeBlastTypeCommand.Execute(_gameStartCheckAllTheGridCommand.Execute());
 
         }
     }
