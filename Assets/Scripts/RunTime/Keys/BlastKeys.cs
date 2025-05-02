@@ -10,12 +10,15 @@ namespace RunTime.Keys
      
         public GameObject obj;
         public BlastColorEnum color;
+        public TypeOfBlastEnum type;
         
-        public BlastKeys( GameObject gameObject, BlastColorEnum blastColor)
+        public BlastKeys( GameObject gameObject, BlastColorEnum blastColor, TypeOfBlastEnum type)
         {
 
             obj = gameObject;
             color = blastColor;
+            this.type = type;
+
 
 
         }

@@ -11,22 +11,24 @@ namespace RunTime.Commands.BlastGridCommands
 {
     public class ChangeBlastTypeCommand
     {
-        private CD_BlastData _blastData;
+       
         private Dictionary<Vector2, BlastKeys> _blastDictionary;
         private Transform _collectedBlats;
+        private GameStartCheckAllTheGridCommand _gameStartCheckAllTheGridCommand;
 
-        public ChangeBlastTypeCommand(CD_BlastData blastData, Dictionary<Vector2, BlastKeys> blastDictionary
-             , Transform collectedBlats)
+        public ChangeBlastTypeCommand(GameStartCheckAllTheGridCommand gameStartCheckAllTheGridCommand,
+            Dictionary<Vector2, BlastKeys> blastDictionary
+            , Transform collectedBlats)
         {
-            _blastData = blastData;
             _blastDictionary = blastDictionary;
-            
+            _gameStartCheckAllTheGridCommand = gameStartCheckAllTheGridCommand;
             _collectedBlats = collectedBlats;
         }
 
 
-        public void Execute(List<List<Vector2>> matchedGroups)
+        public void Execute()
         {
+            var matchedGroups = _gameStartCheckAllTheGridCommand.Execute();
             
             foreach (var matched in matchedGroups)
             {
@@ -58,19 +60,16 @@ namespace RunTime.Commands.BlastGridCommands
                 var matchedObj = _blastDictionary[item];
                 var newObj = PoolSignals.Instance.onGetBlastObject?.Invoke(type, matchedObj.color, 1, _collectedBlats);
 
-                Debug.LogWarning("matchedObj: " + matchedObj.obj.GetInstanceID());
-                // Yeni objeyi eski objenin pozisyonuna yerleştir
+                
                 newObj.transform.localPosition = matchedObj.obj.transform.localPosition;
                 newObj.transform.localScale = matchedObj.obj.transform.localScale;
                 newObj.GetComponent<SpriteRenderer>().sortingOrder = matchedObj.obj.GetComponent<SpriteRenderer>().sortingOrder;
-                newObj.SetActive(true); // Yeni objeyi aktif yap
+                newObj.SetActive(true);  
 
-                // Dictionary'i güncelle
-                _blastDictionary[item] = new BlastKeys(newObj, matchedObj.color);
+                
+                _blastDictionary[item] = new BlastKeys(newObj, matchedObj.color,type);
 
-                Debug.LogWarning(newObj.GetInstanceID());
-                Debug.LogWarning(_blastDictionary[item].obj.GetInstanceID());
-                // Eski objeyi havuza geri gönder
+                
                 PoolSignals.Instance.onSendBlastObjectToPool?.Invoke(TypeOfBlastEnum.Default, matchedObj.color, matchedObj.obj);
             }
         }

@@ -43,7 +43,7 @@ namespace RunTime.Commands.BlastGridCommands
                     newObj.GetComponent<SpriteRenderer>().sortingOrder = j;
                     newObj.transform.position = new Vector3(i * 2.2f, j * 2.2f, 0);
                  
-                    _blastDictionary[new Vector2(i , j )] = new BlastKeys(newObj,getRandomColor);
+                    _blastDictionary[new Vector2(i , j )] = new BlastKeys(newObj,getRandomColor, TypeOfBlastEnum.Default);
 
 
 
@@ -65,7 +65,7 @@ namespace RunTime.Commands.BlastGridCommands
        
            
             
-            _changeBlastTypeCommand.Execute(_gameStartCheckAllTheGridCommand.Execute());
+            _changeBlastTypeCommand.Execute();
 
         }
     }

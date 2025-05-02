@@ -17,6 +17,7 @@ public class BlastCreaterManager : MonoBehaviour
     #region Private Variables
 
     private CD_BlastData _blastData;
+    private CD_BlastingEffect _blastingEffect;
 
     #endregion
 
@@ -26,15 +27,21 @@ public class BlastCreaterManager : MonoBehaviour
     private void Awake()
     {
         _blastData = GetBlastData();
-        SendDataToControllers(_blastData);
+        _blastingEffect = GetEffectData();
+        SendDataToControllers(_blastData,_blastingEffect);
     }
+
+    private CD_BlastingEffect GetEffectData() => Resources.Load<CD_BlastingEffect>("Data/CD_BlastingEffect");
     
+
 
     private CD_BlastData GetBlastData() => Resources.Load<CD_BlastData>("Data/CD_BlastData");
     
-    private void SendDataToControllers(CD_BlastData blastData)
+    private void SendDataToControllers(CD_BlastData blastData,CD_BlastingEffect blastingEffect)
     {
         blastGridController.GetBlastData(blastData);
+        blastGridController.GetEffectData(blastingEffect);
+        
         
     }
 
