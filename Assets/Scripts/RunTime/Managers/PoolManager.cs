@@ -41,12 +41,21 @@ namespace RunTime.Managers
 
         private void OnSubscribeEvents()
         {
-            PoolSignals.Instance.onGetBlastObject += GetBlastObject;
+            PoolSignals.Instance.onGetBlastObject += OnGetBlastObject;
+            PoolSignals.Instance.onSendBlastObjectToPool += OnSendBlastObjectToPool;
+        }
+
+        private void OnSendBlastObjectToPool(TypeOfBlastEnum blastType, BlastColorEnum blastColor, GameObject obj)
+        {
+            var colorObj = transform.GetChild((int)blastColor).gameObject;
+            var typeOfObj = colorObj.transform.GetChild((int)blastType).gameObject;
+            obj.transform.parent = typeOfObj.transform;
+            obj.SetActive(false);
         }
 
         private void OnUnsubscribeEvents()
         {
-            PoolSignals.Instance.onGetBlastObject -= GetBlastObject;
+            PoolSignals.Instance.onGetBlastObject -= OnGetBlastObject;
         }
 
         private void OnDisable()
@@ -54,7 +63,7 @@ namespace RunTime.Managers
             OnUnsubscribeEvents();
         }
         
-        private GameObject GetBlastObject(TypeOfBlastEnum typeOfBlast, BlastColorEnum blastColor,int count,Transform newParent)
+        private GameObject OnGetBlastObject(TypeOfBlastEnum typeOfBlast, BlastColorEnum blastColor,int count,Transform newParent)
         {
             
             var colorObj = transform.GetChild((int)blastColor).gameObject;
@@ -62,7 +71,6 @@ namespace RunTime.Managers
             if (typeOfObj.transform.childCount > 0)
             {
                 var newObj = typeOfObj.transform.GetChild(typeOfObj.transform.childCount - 1).gameObject;
-                Debug.LogWarning(newObj.name);
                 newObj.transform.parent = newParent;
                 return newObj;
             }

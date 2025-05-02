@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Level: 0
   data:
-  - Rows: 8
-    Columns: 4
+  - Rows: 10
+    Columns: 10
     Colors: 02000000010000000300000004000000
   - Rows: 0
     Columns: 0

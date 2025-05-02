@@ -9,16 +9,15 @@ namespace RunTime.Keys
     {
      
         public GameObject obj;
-        public string color;
+        public BlastColorEnum color;
         
-        public BlastKeys( GameObject gameObject, string blastColor)
+        public BlastKeys( GameObject gameObject, BlastColorEnum blastColor)
         {
-            
-            var obj = gameObject;
-            var color = blastColor;
 
-            // Use the variables as needed
-            Debug.Log($" Object: {obj.name}, Color: {color}");
+            obj = gameObject;
+            color = blastColor;
+
+
         }
 
     }

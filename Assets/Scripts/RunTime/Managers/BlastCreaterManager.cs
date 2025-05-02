@@ -1,6 +1,7 @@
 using System;
 using RunTime.Controllers;
 using RunTime.Data.UnityObject;
+using RunTime.Signals;
 using UnityEngine;
 
 public class BlastCreaterManager : MonoBehaviour
@@ -34,5 +35,30 @@ public class BlastCreaterManager : MonoBehaviour
     private void SendDataToControllers(CD_BlastData blastData)
     {
         blastGridController.GetBlastData(blastData);
+        
     }
+
+
+    private void OnEnable()
+    {
+        OnSubscribeEvents();
+    }
+
+    private void OnSubscribeEvents()
+    {
+        InputSignals.Instance.onPlayerClickedToBlast += blastGridController.OnPlayerClickedToBlast;
+    }
+    
+    private void UnSubscribeEvents()
+    {
+        InputSignals.Instance.onPlayerClickedToBlast -= blastGridController.OnPlayerClickedToBlast;
+    }
+
+    private void OnDisable()
+    {
+        UnSubscribeEvents();
+    }
+    
+    
+    
 }
